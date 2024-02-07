@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2022 Maglo Solutions Corp.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head> <!-- head -->
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-Type" name="description" content="text/html; charset=UTF-8"/>
+        <!-- [if lte IE 8]><script src="web/js/ie/html5shiv.js"></script><![endif] -->
+        
+        <!-- Lien logo -->
+        <link rel="icon" href="../design/assets/img/favicons/favicon.ico"/>
+        <title>GMAO | Liste Clients</title>
+        
+        <!-- liens CSS -->
+        <link rel="stylesheet" type="text/css" href="../design/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="../design/css/dashboard.css"/>
+        <link rel="stylesheet" type="text/css" href="../design/css/sidebars.css"/>
+        
+        <!-- liens icons customs -->
+        <link rel="stylesheet" type="text/css" href="../design/primeicons-master/primeicons.css"/>
+        
+        <!-- Fonts personnalise -->
+        <link rel="stylesheet" type="text/css" href="../design/css/gmao.min.css"/>
+    </h:head> <!-- /head -->
+    <h:body> <!-- body -->
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="login" value="#{loginController.login}"/>
+                <f:viewAction action="#{loginController.loadUser()}"/>
+            </f:metadata> <!-- /f:metadata -->
+        </ui:define> <!-- /ui:define -->
+        
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Bioecoms &bull; Maint</a>
+            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> <!-- /button -->
+            <div class="navbar-nav">
+                <div class="nav-item text-nowrap">
+                    <a class="nav-link px-3 text-white fw-semibold" href="#">Bonjour, #{loginController.authenticatedUser.prenom}</a>
+                </div> <!-- /div -->
+            </div> <!-- /div -->
+        </header> <!-- /header -->
+        
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="position-sticky pt-3">
+                        <!-- comments 
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">
+                                    <i class="pi pi-home px-2" style="font-size: 16px;"></i>
+                                    Accueil
+                                </a> 
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="pi pi-list px-2" style="color: lightsteelblue; font-size: 16px;"></i>
+                                    Clients
+                                </a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="pi pi-list px-2" style="color: lightsteelblue; font-size: 16px;"></i>
+                                    Equipements
+                                </a> 
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="pi pi-list px-2" style="color: lightsteelblue; font-size: 16px;"></i>
+                                    Techniciens
+                                </a> 
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="pi pi-search px-2" style="color: lightsteelblue; font-size: 16px;"></i>
+                                    Rechercher <span class="text-muted" style="font-size: 10px;">(fiche)</span>
+                                </a>  
+                            </li>
+                        </ul>  /ul nav flex-column -->
+                        <div class="flex-shrink-0 p-3">
+                            <a href="home.xhtml" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                                <span class="fs-5 fw-semibold">Tableau de bord</span>
+                            </a> <!-- /a -->
+                            <ul class="list-unstyled ps-0">
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                                        Clients
+                                    </button> <!-- /button -->
+                                    <div class="collapse show" id="home-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-plus px-2"></i>
+                                                    Nouveau client
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded disabled">
+                                                    <i class="pi pi-users px-2"></i>
+                                                    Liste des clients
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-edit px-2"></i>
+                                                    Modifier un client
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div .collapse -->
+                                </li> <!-- /li .mb-1 client -->
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                                        &Eacute;quipements
+                                    </button> <!-- /button -->
+                                    <div class="collapse" id="dashboard-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-plus px-2"></i>
+                                                    Nouvel équipement
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="listHrdwre.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-list px-2"></i>
+                                                    Liste des équipements
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-pencil px-2"></i>
+                                                    Modifier un équipement
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div -->
+                                </li> <!-- /li equipements -->
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                                        Techniciens
+                                    </button> <!-- /button -->
+                                    <div class="collapse show" id="orders-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-plus px-2"></i>
+                                                    Nouveau technicien
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="listAgts.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-users px-2"></i>
+                                                    Liste des techniciens
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-edit px-2"></i>
+                                                    Modifier un technicien
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div .collapse -->
+                                </li> <!-- /li .mb-1 techniciens -->
+                                <li class="border-top my-3"></li>
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                                        Compte
+                                    </button> <!-- /button -->
+                                    <div class="collapse" id="account-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-plus px-2"></i>
+                                                    Nouveau manager
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-users px-2"></i>
+                                                    Liste des managers
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-edit px-2"></i>
+                                                    Modifier un manager
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div -->
+                                </li> <!-- /li account -->
+                            </ul> <!-- /ul .list-unstyled -->
+                        </div> <!-- /div .flex-shrink-0 -->
+                    </div> <!-- /position-sticky pt-3 -->
+                </nav> <!-- /nav -->
+                
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2 fw-semibold text-dark fs-5"><i class="pi pi-users px-2"></i>Liste des clients</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group me-2">
+                                <h:form>
+                                    <p:commandButton action="#{loginController.logout}" value="Se déconnecter" styleClass="btn btn-sm btn-outline-secondary rounded-pill text-uppercase fw-bold" update="@form"/>
+                                </h:form> <!-- /form -->
+                            </div> <!-- /div -->
+                        </div> <!-- /div .btn-toolbar -->
+                    </div> <!-- /div .d-flex -->
+                    
+                    <div class="table-responsive">
+                        <f:view> <!-- f:view -->
+                            <h:form> <!-- form -->
+                                <p:tooltip/>
+                                <p:messages id="messages" globalOnly="true" showDetail="true" severity="info" showSummary="true" styleClass="info w-100" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages> <!-- /messages -->
+                                
+                                <p:dataTable value="#{listClientsController.clients}" var="item" emptyMessage="Aucun client n'a été trouvé dans la liste..." widgetVar="clientsWidget"
+                                             filteredValue="#{listClientsController.filteredClients}" globalFilterFunction="#{listClientsController.globalFilterClients}">
+                                    <f:facet name="header">
+                                        <p:outputPanel>
+                                            <h:outputLabel value="Rechercher dans la liste :"/>
+                                            <p:inputText id="globalFilter" onkeyup="PF('clientsWidget').filter()" styleClass="form-control" placeholder="Taper votre recherche..."/>
+                                        </p:outputPanel>
+                                    </f:facet>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel value="Client"/>
+                                        </f:facet>
+                                        <h:outputLabel value="#{item.nomClient}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel value="Service"/>
+                                        </f:facet>
+                                        <h:outputLabel value="#{item.service}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel value="Ville"/>
+                                        </f:facet>
+                                        <h:outputLabel value="#{item.ville}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel value="Téléphone"/>
+                                        </f:facet>
+                                        <h:outputLabel value="#{item.telClient}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel value="Afficher"/>
+                                        </f:facet>
+                                        <p:linkButton value="Voir plus" outcome="detailClient" styleClass="btn btn-sm ui-button-raised ui-button-info rounded-pill">
+                                            <f:param name="nomClient" value="#{item.nomClient}"/>
+                                        </p:linkButton>
+                                    </p:column>
+                                </p:dataTable> <!-- /dataTable -->
+                            </h:form> <!-- /form -->
+                        </f:view> <!-- /wiew -->
+                    </div> <!-- /div row -->
+                    
+                    <hr class="my-3"/>
+                    
+                    <footer class="mt-auto pt-5 text-muted text-center text-small">
+                        <p class="mb-1">&copy; Copyright 2022 | <a href="#">Bioecoms &bull; Maint</a>.</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="#">Privacy</a></li>
+                            <li class="list-inline-item"><a href="#">Terms</a></li>
+                            <li class="list-inline-item"><a href="#">Support</a></li>
+                        </ul> <!-- /ul .list-inline -->
+                    </footer> <!-- /footer -->
+                </main> <!-- /main -->
+            </div> <!-- /div .row -->
+        </div> <!-- /div .container-fluid -->
+        
+        <script src="../design/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="../design/js/dashboard.js" type="text/javascript"></script>
+    </h:body> <!-- /body -->
+</html> <!-- /html -->

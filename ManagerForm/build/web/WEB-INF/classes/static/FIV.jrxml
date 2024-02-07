@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FIV" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isTitleNewPage="true" isIgnorePagination="true" uuid="707c45c7-e7d7-469c-bad2-fe333eb8cf44">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAction" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT a.idAction, a.jour, a.harrivee, a.hfin, a.nomCustomer, c.service, c.ville, c.telClient, a.nomHdre, h.marque, h.model, h.noSerie, a.statut
+FROM action_form a
+	LEFT JOIN clients c ON  a.nomCustomer = c.nomClient
+	LEFT JOIN hardware h ON a.nomHdre = h.nomHardware
+WHERE 
+	 a.idAction = $P{idAction}]]>
+	</queryString>
+	<field name="idAction" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jour" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harrivee" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hfin" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomCustomer" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="service" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ville" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telClient" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomHdre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marque" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="model" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="noSerie" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="statut" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="79" uuid="4e25968d-f392-48b3-8d8b-5100de003706"/>
+				<imageExpression><![CDATA["Header.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="62" width="555" height="38" backcolor="#21409A" uuid="90b4fc21-5c21-4cd4-a1f2-a94d9043e8a0"/>
+				<graphicElement>
+					<pen lineColor="#21409A"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="72" y="66" width="410" height="30" forecolor="#FFFFFF" uuid="3ac23e7e-839c-477a-b354-b998e6c1e660"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[FICHE D'INTERVENTION]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="160" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="18" width="280" height="20" uuid="b26a3c92-3351-4159-b70b-a3c427c377de"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="280" y="18" width="275" height="20" uuid="220c4938-4427-4a75-836a-13ec80c85d1b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="40" width="280" height="23" backcolor="#21409A" uuid="29289dc6-d3da-404c-91e7-823b0f37e31e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="280" y="40" width="275" height="23" backcolor="#21409A" uuid="a55533f0-9c7d-45b2-9933-cac988f6ca12"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="65" width="280" height="20" uuid="dd223cf6-27c8-4da5-afeb-5bbf4ed89c7b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="87" width="280" height="20" backcolor="#FFFFFF" uuid="9797035a-2fb2-40da-a532-9abe26239b04"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="109" width="280" height="20" backcolor="#FFFFFF" uuid="ef5b9362-73cf-4997-9dbe-89e7bda1a09d"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="131" width="280" height="20" backcolor="#FFFFFF" uuid="0ae22670-e61a-4da4-8bf1-6cd29c91a3a5"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="280" y="65" width="275" height="20" uuid="9b7afa40-584e-459e-af6e-c0ca64058e37"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="280" y="87" width="275" height="20" uuid="beccd3fb-a0cc-40e3-aec2-4749fc5f2e0c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="280" y="109" width="275" height="20" uuid="fcf70fdb-270b-4e19-889b-b4034f66129b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="280" y="131" width="275" height="20" uuid="49b563fb-875c-4ca0-ba77-f4aae733e8b1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="2" width="50" height="14" uuid="32a52fef-847c-4e1a-bfca-106140710f26"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="2" width="50" height="14" uuid="32febe57-31fe-4be3-afb8-278b2ba85efe"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[N° :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="22" width="120" height="14" uuid="306b0335-491c-420c-ad88-133b0dc2068b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Heure de début :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="22" width="120" height="14" uuid="09a17dd8-e347-481c-85ee-adc14a761fa3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Heure de fin :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="45" width="180" height="14" forecolor="#FFFFFF" backcolor="#21409A" uuid="b1c9fe00-a202-4b74-8426-015c4e3cf92c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[INFORMATIONS DU CLIENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="45" width="220" height="14" forecolor="#FFFFFF" uuid="f5ee87d6-ef7d-4ffc-b506-e7e95fe9f6fc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[INFORMATIONS SUR L'EQUIPEMENT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="2" width="100" height="14" uuid="55d0a4a8-9cf5-4678-b035-49985acdc735"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idAction}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="68" width="120" height="14" uuid="7914d153-07ce-43fb-b4df-3b4cfffc331f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Nom :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="90" width="120" height="14" uuid="350b145e-2313-473d-961d-451093c79742"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Service :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="112" width="120" height="14" uuid="47d871e6-78f9-48ff-b809-d0fb8d6d9e8b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Ville :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="134" width="120" height="14" uuid="4d7dd962-d3cb-4e10-b0f3-54b116ef50ab"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[N° de téléphone :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="68" width="120" height="14" uuid="e4cac199-2f57-40f2-b312-82bbf7516359"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Nom :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="90" width="120" height="14" uuid="e7d72603-e56f-46d7-8486-94794a28c729"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Marque :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="112" width="120" height="14" uuid="b1d4a3fa-08ea-415e-8301-8f6fdc6c586b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Modèle :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="134" width="120" height="14" uuid="625f3e96-25bd-4c6d-9d9f-e44dc43fcbeb"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[N° de série :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="45" y="2" width="150" height="14" uuid="af679a4b-fd61-44f7-8bb1-e904109e2a7c"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jour}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="21" width="100" height="14" uuid="154493d3-4c66-46e3-b871-99530574be7e"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{harrivee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="21" width="100" height="14" uuid="cba2801f-2bf2-4e8c-bf2b-5565128e5f8f"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hfin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="68" width="200" height="14" uuid="81558202-14ef-4c7a-ac1a-e6a6ef739066"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomCustomer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="90" width="120" height="14" uuid="6c5c91e3-2bd3-485d-a637-b6aa18fb5ae2"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{service}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="112" width="100" height="14" uuid="49e67b80-26b2-4dbb-acb0-0ef9c8f551f0"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ville}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="134" width="100" height="14" uuid="450e543c-8ae3-4e77-bebf-e4a14f6e7fd5"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telClient}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="68" width="180" height="14" uuid="df75f0ae-c16b-413e-b8bb-b4f0cb356471"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomHdre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="90" width="120" height="14" uuid="47317283-e8ea-4b3c-a2db-a3a73821c5ba"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{marque}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="112" width="120" height="14" uuid="94b76347-ac86-41e3-b409-8a224d4b7651"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{model}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="134" width="120" height="14" uuid="903d2e64-70b4-4b46-a814-c17127abf0ec"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{noSerie}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="480" splitType="Stretch">
+			<rectangle>
+				<reportElement x="275" y="2" width="280" height="20" backcolor="#FFFFFF" uuid="1ddd816f-2c73-401e-af89-6ce359d81873"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="2" width="280" height="20" backcolor="#21409A" uuid="55743010-db2e-41a3-8679-1fd21591c1a1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="42" width="280" height="16" backcolor="#FFFFFF" uuid="11ab1375-721a-4540-a0a0-fba89b1bac69"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="275" y="42" width="280" height="16" backcolor="#FFFFFF" uuid="8d93dd36-b170-4990-b4c6-6d87448a7665"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="58" width="280" height="71" backcolor="#FFFFFF" uuid="7838046f-5be6-4d08-aca7-026e8f87de49"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="275" y="58" width="280" height="71" backcolor="#FFFFFF" uuid="1cba34a2-4dc1-4127-9e3e-27bf29466dd7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="160" width="555" height="16" backcolor="#FFFFFF" uuid="c9c6f06f-9ab4-4720-a8a8-7dc29b799594"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="176" width="555" height="71" backcolor="#FFFFFF" uuid="7cf9ccdd-e1fb-4995-8f34-621f3eeb373e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="267" width="555" height="16" backcolor="#FFFFFF" uuid="4657f516-ea85-407d-9e97-f6b850abe025"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="283" width="555" height="71" backcolor="#FFFFFF" uuid="626e88ba-6897-4380-a4b4-d850ed7eb3b1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="374" width="555" height="16" backcolor="#FFFFFF" uuid="b74e5bc9-6d16-45f2-b97d-b46b1fab69cc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="390" width="555" height="71" backcolor="#FFFFFF" uuid="dc5b3c3d-757e-4d04-8573-ce2edeb42c54"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="30" y="5" width="220" height="14" forecolor="#FFFFFF" uuid="fbf9ad37-c565-48b3-bba8-4b6e2321cafb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SITUATION DE L'EQUIPEMENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="43" width="120" height="14" uuid="40355ec8-20a0-4e74-97cf-5b30ea261398"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Problème(s) posé(s)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="43" width="120" height="14" uuid="76bfb311-4b29-44c6-98cb-e8bff9351ca5"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Pannes constatée(s)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="161" width="120" height="14" uuid="28f64b3e-0e8f-4416-8f3c-33b77b37fc2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Travail effectué]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="268" width="160" height="14" uuid="11d8c825-6c79-4210-8cc5-63e9c8779a4d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Observations / Commentaires]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="375" width="160" height="14" uuid="a6a23d24-0cb1-4cdf-b2a2-d4912267f87d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Conclusion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="5" width="120" height="14" uuid="d05eecb5-8971-4a13-9548-23b39704282e"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{statut}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="255" height="30" uuid="931bbdfb-49b8-469f-9cde-001cdf5acd2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SERVICE TECHNIQUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="3" width="255" height="30" uuid="3660bdd3-f9be-44c0-93af-2b2c4a977e1c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SERVICE CLIENT]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

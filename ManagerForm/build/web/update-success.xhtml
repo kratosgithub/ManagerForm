@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2022 Maglo Solutions Corp.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" class="h-100">
+    <h:head> <!-- head -->
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-Type" name="description" content="text/html; charset=UTF-8"/>
+        <!-- [if lte IE 8]><script src="web/js/ie/html5shiv.js"></script><![endif] -->
+        
+        <!-- Lien logo -->
+        <link rel="icon" href="design/assets/img/favicons/favicon.ico"/>
+        <title>GMAO | Mot de passe réinitialisé</title>
+        
+        <!-- BootStrap Core CSS -->
+        <link rel="stylesheet" type="text/css" href="design/bootstrap/dist/css/bootstrap.min.css"/>
+        
+        <!-- Custom CSS for this page -->
+        <link rel="stylesheet" type="text/css" href="design/css/sticky-footer.css"/>
+        
+        <!-- CSS customer app -->
+        <link rel="stylesheet" type="text/css" href="design/css/gmao.min.css"/>
+    </h:head> <!-- /head -->
+    <h:body styleClass="d-flex flex-column h-100">
+        <!-- Begin page content -->
+        <main class="flex-shrink-0">
+            <div class="container">
+                <h1 class="mt-5 text-black fw-bold">Vous êtes prêt !</h1>
+                
+                <p:tooltip/>
+                <p:messages id="messages" globalOnly="true" showDetail="true" severity="info" showSummary="true" styleClass="info w-100" closable="true">
+                    <p:autoUpdate/>
+                </p:messages> <!-- /messages -->
+                
+                <p class="lead">Votre mot de passe a été crée réinitialisé avec succès. Pour tous vos éventuels problèmes <code>Contactez-nous</code>.</p>
+                
+                <hr class="my-3"/>
+                
+                <form class="d-flex">
+                    <a class="btn btn-primary me-2 fw-bold text-uppercase rounded-pill" href="login.xhtml">
+                        Se Connecter
+                        <i class="pi pi-sign-in px-2"></i>
+                    </a> <!-- /a .btn -->
+                    <a class="btn btn-warning fw-bold text-uppercase rounded-pill" href="forgot.xhtml">
+                        Réinitialiser votre mot de passe
+                        <i class="pi pi-lock px-2"></i>
+                    </a> <!-- /a .btn -->
+                </form> <!-- /form .d-flex -->
+            </div> <!-- /div .container -->
+        </main> <!-- /main .flex-shrink-0 -->
+        
+        <!-- footer -->
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container">
+                <small class="text-muted">Copyright &copy; 2024 v0.2 | <a class="fw-bold" href="#">Bioecoms &bull; Maint</a>.</small>
+            </div> <!-- /div .container -->
+        </footer> <!-- /footer -->
+    </h:body> <!-- /body -->
+</html> <!-- /html -->

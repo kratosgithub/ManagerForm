@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2022 Maglo Solutions Corp.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <h:head> <!-- head -->
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-Type" name="description" content="text/html; charset=UTF-8"/>
+        <!-- [if lte IE 8]><script src="web/js/ie/html5shiv.js"></script><![endif] -->
+        
+        <!-- Lien logo -->
+        <link rel="icon" href="design/assets/img/favicons/favicon.ico"/>
+        <title>GMAO | Nouveau Compte</title>
+        
+        <!-- BootStrap Core CSS -->
+        <link rel="stylesheet" type="text/css" href="design/bootstrap/dist/css/bootstrap.min.css"/>
+        
+        <!-- Custom CSS for this page -->
+        <link rel="stylesheet" type="text/css" href="design/css/form-validation.css"/>
+        
+        <!-- CSS customer app -->
+        <link rel="stylesheet" type="text/css" href="design/css/gmao.min.css"/>
+    </h:head> <!-- /head -->
+    <h:body styleClass="bg-light">
+        <div class="container">
+            <main> <!-- main -->
+                <div class="py-5 text-center">
+                    <img class="d-block mx-auto mb-4" alt="" height="70" width="55" src="design/assets/brand/bootstrap-solid.svg"/>
+                    <h2 class="text-uppercase fw-bold">Formulaire d'inscription</h2>
+                    <p class="lead">
+                        Remplir le formulaire ci-dessous pour créer un nouveau compte à un technicien. Si besoin d'une assistance ou technique, <a href="#"><code>Contactez-nous</code>.</a>
+                    </p> <!-- /p .lead -->
+                </div> <!-- /div .py-5 -->
+                
+                <div class="row g-5">
+                    <div class="col-md-5 col-lg-4 order-md-last">
+                        <h4 class="d-flex justify-content-between align-items-end mb-3">
+                            <span class="text-primary">Déjà inscrit(e)</span>
+                        </h4> <!-- /h4 -->
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div class="text-purple">
+                                    <h6 class="my-0">Accueil</h6>
+                                    <small class="text-muted"><a href="index.xhtml">Retourner à l'accueil</a></small>
+                                </div> <!-- /div .text-primary -->
+                            </li> <!-- /li -->
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div class="text-success">
+                                    <h6 class="my-0">Connexion</h6>
+                                    <small class="text-muted"><a href="login.xhtml">Se connecter</a></small>
+                                </div> <!-- /div .text-success -->
+                            </li> <!-- /li -->
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div class="text-warning">
+                                    <h6 class="my-0">Réinitialisation</h6>
+                                    <small class="text-muted"><a href="forgot.xhtml">Mot de passe oublié ?</a></small>
+                                </div> <!-- /div .text-secondary -->
+                            </li> <!-- /li -->
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div class="text-info">
+                                    <h6 class="my-0">Vous êtes un client ?</h6>
+                                    <small class="text-muted"><a href="#">Espace Client</a></small>
+                                </div> <!-- /div .text-info -->
+                            </li> <!-- /li -->
+                        </ul> <!-- /ul -->
+                    </div> <!-- /div .col-md-5 -->
+                    
+                    <div class="col-md-7 col-lg-8">
+                        <h4 class="mb-4 text-black fw-bold"><i class="pi pi-info-circle px-2"></i>Informations Générales <hr/></h4>
+                        
+                        <h:form> <!-- form -->
+                            <f:event listener="#{addUserController.validatePassword}" type="postValidate"/>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <h:outputLabel for="inputNom" styleClass="form-label mb-2 text-black-50">Nom</h:outputLabel>
+                                    <p:inputText id="inputNom" styleClass="form-control rounded-4" required="true" value="#{addAgentsController.nom}" type="text" 
+                                                 requiredMessage="Entrer un nom." placeholder="Entrer votre nom">
+                                        <f:validator binding="#{existenceNomValidator}"/>
+                                        <f:ajax event="blur" render="inputNom"/>
+                                    </p:inputText> <!-- /inputText .inputNom -->
+                                    <p:message for="inputNom" styleClass="error w-100" severity="error"/>
+                                    <p:message for="inputNom" styleClass="info" severity="info" showSummary="true"/>
+                                </div> <!-- /div .col-sm-6 -->
+                                <div class="col-sm-6">
+                                    <h:outputLabel for="inputPrenom" styleClass="form-label text-black-50">Prénom</h:outputLabel>
+                                    <p:inputText id="inputPrenom" styleClass="form-control rounded-4" required="true" value="#{addAgentsController.prenom}" type="text"
+                                                 requiredMessage="Entrer un prénom." placeholder="Entrer votre prénom">
+                                        <f:validator binding="#{existencePrenomValidator}"/>
+                                        <f:ajax event="blur" render="inputPrenom"/>
+                                    </p:inputText> <!-- /inputText -->
+                                    <p:message for="inputPrenom" styleClass="error w-100" severity="error"/>
+                                    <p:message for="inputPrenom" styleClass="info" severity="info" showSummary="true"/>
+                                </div> <!-- /div .col-sm-6 -->
+                                <div class="col-sm-6">
+                                    <h:outputLabel for="inputLogin" styleClass="form-label">Nom d'utilisateur</h:outputLabel>
+                                    <div class="input-group">
+                                        <span class="input-group-text rounded-end rounded-4">@</span>
+                                        <p:inputText id="inputLogin" styleClass="form-control rounded-start rounded-4" required="true" value="#{addAgentsController.login}" type="text"
+                                                     requiredMessage="Entrer un nom d'utilisateur." placeholder="Entrer un nom d'utilisateur" label="Erreur"
+                                                     validatorMessage="La longueur est inférieure à la valeur minimale autorisée, '8'">
+                                            <f:validateLength minimum="8"/>
+                                            <f:ajax event="blur" render="inputLogin"/>
+                                        </p:inputText> <!-- /inputText -->
+                                    </div> <!-- /div .input-group -->
+                                    <p:message for="inputLogin" styleClass="error w-100" severity="error"/>
+                                </div> <!-- /div .col-6 -->
+                                <div class="col-sm-6">
+                                    <h:outputLabel for="inputTel" styleClass="form-label">N° de téléphone</h:outputLabel>
+                                    <p:inputText id="inputTel" styleClass="form-control rounded-4" required="true" value="#{addAgentsController.tel}"
+                                                 requiredMessage="Entrer votre numéro de téléphone." placeholder="N° de téléphone" 
+                                                 converterMessage="Le N° de téléphone doit contenir uniquement des chiffres" label="Erreur : ">
+                                        <f:convertNumber pattern="#, ##, ##, ##, ##"/>
+                                        <f:ajax event="blur" render="inputTel"/>
+                                    </p:inputText> <!-- /inputText -->
+                                    <p:message for="inputTel" styleClass="error" severity="error"/>
+                                </div> <!-- /div .col-md-3 -->
+                                <div class="col-12">
+                                    <h:outputLabel for="inputPassword" styleClass="form-label">Mot de passe</h:outputLabel>
+                                    <p:password id="inputPassword" styleClass="form-control rounded-4" required="true" value="#{addAgentsController.password}"
+                                                requiredMessage="Entrer un mot de passe." placeholder="Mot de passe">
+                                        <f:validator validatorId="passwordValidator" id="inputPassword"/>
+                                        <f:ajax event="blur" render="inputPassword"/>
+                                    </p:password> <!-- /password -->
+                                    <p:message for="inputPassword" styleClass="error w-100" severity="error"/>
+                                    <p:message for="inputPassword" styleClass="warn" severity="warn" showSummary="true"/>
+                                </div> <!-- /div .col-12 -->
+                                <div class="col-12">
+                                    <h:outputLabel for="inputConfirmPassword" styleClass="form-label">Confirmer le mot de passe</h:outputLabel>
+                                    <p:password id="inputConfirmPassword" styleClass="form-control rounded-4" required="true" value="#{addAgentsController.confirmPassword}"
+                                                requiredMessage="Confirmer votre mot de passe." placeholder="Mot de passe à nouveau">
+                                        <f:validator validatorId="passwordValidator" id="inputConfirmPassword"/>
+                                        <f:ajax event="blur" render="inputConfirmPassword"/>
+                                    </p:password> <!-- /password -->
+                                    <p:message for="inputConfirmPassword" styleClass="error w-100" severity="error"/>
+                                    <p:message for="inputConfirmPassword" styleClass="warn" severity="warn"/>
+                                </div> <!-- /div .col-12 -->
+                            </div> <!-- /div .g-3 -->
+                            
+                            <hr class="my-3"/>
+                            
+                            <p:commandButton action="#{addAgentsController.saveAgent}" value="Enregistrer ce compte" update="@form"
+                                    styleClass="w-100 btn btn-lg ui-button-raised ui-button-success fw-bold text-uppercase rounded-pill"/>
+                        </h:form> <!-- /form -->
+                    </div> <!-- /div .col-md-7 col-lg-8 -->
+                </div> <!-- /div .row g-5 -->
+            </main> <!-- /main -->
+            
+            <footer class="mt-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">&copy; Copyright 2024 v0.2 | <a href="#">Bioecoms &bull; Maint</a>.</p>
+                <!--
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                    <li class="list-inline-item"><a href="#">Support</a></li>
+                </ul>  /ul .list-inline -->
+            </footer> <!-- /footer -->
+        </div> <!-- /div .container -->
+    </h:body> <!-- /body -->
+</html> <!-- /html -->

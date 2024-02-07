@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_SPRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
+        <param-value>/WEB-INF</param-value>
+    </context-param>
+    
+    <!-- saving_method -->
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
+    
+    <display-name>File Management</display-name>
+    <!--
+    <filter>
+        <filter-name>Set Character Encoding</filter-name>
+        <filter-class>org.apache.catalina.filters.SetCharacteEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ignore</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter> -->
+    <!--
+    <filter-mapping>
+        <filter-name>Set Character Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping> -->
+    
+    <filter>
+        <filter-name>PrechargementFilter</filter-name>
+        <filter-class>com.maglo.ManagerForm.filters.PrechargementFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>PrechargementFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>
+            -1
+        </session-timeout>
+    </session-config>
+    
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
+    </welcome-file-list>
+    
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>gmao-realm</realm-name>
+        <form-login-config>
+            <form-login-page>/login.xhtml</form-login-page>
+            <form-error-page>/login-failed.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.xhtml</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.xhtml</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.xhtml</location>
+    </error-page>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Administration secure pages</web-resource-name>
+            <url-pattern>/managers/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin_role</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <security-role>
+        <role-name>admin_role</role-name>
+    </security-role>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Other secure pages</web-resource-name>
+            <url-pattern>/users/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>other_user_role</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <security-role>
+        <role-name>other_user_role</role-name>
+    </security-role>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Default secure pages</web-resource-name>
+            <url-pattern>/agents/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>default_user_role</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <security-role>
+        <role-name>default_user_role</role-name>
+    </security-role>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>View secure page</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>primeicons/primeicons.eot</mime-type>
+    </mime-mapping>
+    
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>primeicons/primeicons.ttf</mime-type>
+    </mime-mapping>
+    
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>primeicons/primeicons.woff</mime-type>
+    </mime-mapping>
+    
+    <mime-mapping>
+        <extension>woff2</extension>
+        <mime-type>primeicons/primeicons.woff2</mime-type>
+    </mime-mapping>
+</web-app>

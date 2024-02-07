@@ -1,0 +1,12 @@
+
+-- Genere une fiche d'intervention en fonction de l'identifiant -->
+
+SELECT a.idAction, a.jour, a.harrivee, a.hfin, a.nomCustomer, c.service, c.ville, c.telClient, a.nomHdre,
+	h.marque, h.model, h.noSerie, a.statut
+FROM action_form a
+	LEFT JOIN clients c ON  a.nomCustomer = c.nomClient
+	LEFT JOIN hardware h ON a.nomHdre = h.nomHardware
+WHERE 
+	 a.idAction = $P{idAction}
+
+-- 

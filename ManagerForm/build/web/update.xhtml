@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2022 Maglo Solutions Corp.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head> <!-- head -->
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-Type" name="description" content="text/html; charset=UTF-8"/>
+        <!-- [if lte IE 8]><script src="web/js/ie/html5shiv.js"></script><![endif] -->
+        
+        <!-- Lien logo -->
+        <link rel="icon" href="design/assets/img/favicons/favicon.ico"/>
+        <title>GMAO | Réinitialisation</title>
+        
+        <!-- BootStrap Core CSS -->
+        <link rel="stylesheet" type="text/css" href="design/bootstrap/dist/css/bootstrap.min.css"/>
+        
+        <!-- Custom CSS for this page -->
+        <link rel="stylesheet" type="text/css" href="design/css/form-validation.css"/>
+        
+        <!-- CSS customer app -->
+        <link rel="stylesheet" type="text/css" href="design/css/gmao.min.css"/>
+    </h:head> <!-- /head -->
+    <h:body styleClass="bg-light"> <!-- body -->
+        <div class="container">
+            <main> <!-- main -->
+                <div class="py-5 text-center">
+                    <img class="d-block mx-auto mb-4" alt="" height="72" width="57" src="design/assets/brand/bootstrap-solid.svg"/>
+                    <h2 class="text-uppercase fw-bold">Réinitialisation du mot de passe</h2>
+                    <p class="lead">
+                        Réinitialisez votre mot de passe via ce formulaire afin de pouvoir avoir accès à nos services à travers votre espace dédié. <a href="#"><code>Contactez-nous</code></a> pour une 
+                        assistance si besoin se présente.
+                    </p> <!-- /p .lead -->
+                    
+                    <ui:define name="metadata">
+                        <f:metadata> <!-- metadata -->
+                            <f:viewParam name="login" value="#{forgotController.login}"/>
+                            <f:viewAction action="#{forgotController.loadUser()}"/>
+                        </f:metadata> <!-- /f:metadata -->
+                    </ui:define> <!-- /ui:define -->
+                </div> <!-- /div .py-5 -->
+                
+                <div class="row g-5">
+                    <div class="col-md-5 col-lg-4 order-md-last">
+                        <h4 class="d-flex justify-content-between align-items-end mb-3">
+                            <span class="text-primary">Déjà inscrit(e)</span>
+                        </h4> <!-- /h4 -->
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div class="text-primary">
+                                    <h6 class="my-0">Accueil</h6>
+                                    <small class="text-muted"><a href="index.xhtml">Retourner à l'accueil</a></small>
+                                </div> <!-- /div .text-primary -->
+                            </li> <!-- /li -->
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div class="text-success">
+                                    <h6 class="my-0">Connexion</h6>
+                                    <small class="text-muted"><a href="login.xhtml">Se connecter</a></small>
+                                </div> <!-- /div .text-success -->
+                            </li> <!-- /li -->
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div class="text-danger">
+                                    <h6 class="my-0">Créer un compte</h6>
+                                    <small class="text-muted"><a href="register.xhtml">S'inscrire</a></small>
+                                </div> <!-- /div .text-primary -->
+                            </li> <!-- /li -->
+                        </ul> <!-- /ul -->
+                    </div> <!-- /div .col-md-5 -->
+                        
+                    <div class="col-md-7 col-lg-8">
+                        <h4 class="mb-4 text-black fw-bold">Informations personnelles <hr/></h4>
+                        
+                        <h:form> <!-- form -->
+                            <f:event listener="#{forgotController.validatePassword}" type="postValidate"/>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <h:outputLabel for="inputNom" styleClass="form-label">Nom</h:outputLabel>
+                                    <h:outputText id="inputNom" value="#{forgotController.users.nom}" styleClass="form-control"/>
+                                </div> <!-- /div .col-sm-6 -->
+                                <div class="col-sm-6">
+                                    <h:outputLabel for="inputPrenom" styleClass="form-label">Prénom</h:outputLabel>
+                                    <h:outputText id="inputPrenom" value="#{forgotController.users.prenom}" styleClass="form-control"/>
+                                </div> <!-- /div .col-sm-6 -->
+                                <div class="col-12">
+                                    <h:outputLabel for="inputLogin" styleClass="form-label">Nom d'utilisateur</h:outputLabel>
+                                    <div class="input-group">
+                                        <span class="input-group-text">@</span>
+                                        <h:outputText id="inputLogin" value="#{forgotController.users.login}" styleClass="form-control"/>
+                                    </div> <!-- /div .input-group -->
+                                </div> <!-- /div .col-12 -->
+                                <div class="col-12">
+                                    <h:outputLabel for="inputPassword" styleClass="form-label">Mot de passe</h:outputLabel>
+                                    <p:password id="inputPassword" styleClass="form-control rounded-4" required="true" value="#{forgotController.password}"
+                                            requiredMessage="Entrer un mot de passe." placeholder="Mot de passe">
+                                        <f:validator validatorId="passwordValidator" id="inputPassword"/>
+                                        <f:ajax event="blur" render="inputPassword"/>
+                                    </p:password> <!-- /password -->
+                                    <p:message for="inputPassword" styleClass="error w-100" severity="error"/>
+                                    <p:message for="inputPassword" styleClass="warn" severity="warn" showSummary="true"/>
+                                </div> <!-- /div .col-12 -->
+                                <div class="col-12">
+                                    <h:outputLabel for="inputConfirmPassword" styleClass="form-label">Confirmer le mot de passe</h:outputLabel>
+                                    <p:password id="inputConfirmPassword" styleClass="form-control rounded-4" required="true" value="#{forgotController.confirmPassword}"
+                                            requiredMessage="Confirmer votre mot de passe." placeholder="Mot de passe à nouveau">
+                                        <f:validator validatorId="passwordValidator" id="inputConfirmPassword"/>
+                                        <f:ajax event="blur" render="inputConfirmPassword"/>
+                                    </p:password> <!-- /password -->
+                                    <p:message for="inputConfirmPassword" styleClass="error w-100" severity="error"/>
+                                    <p:message for="inputConfirmPassword" styleClass="warn" severity="warn"/>
+                                </div> <!-- /div .col-12 -->
+                                <div class="col-md-5">
+                                    <h:outputLabel for="inputTel" styleClass="form-label">N° de téléphone</h:outputLabel>
+                                    <h:outputText id="inputTel" value="#{forgotController.users.tel}" styleClass="form-control"/>
+                                </div> <!-- /div .col-md-3 -->
+                            </div> <!-- /div .row g-3 -->
+                                
+                            <hr class="my-3"/>
+                                
+                            <p:commandButton action="#{forgotController.savePassword}" value="Enregistrer le mot de passe" update="@form"
+                                            styleClass="btn ui-button-raised ui-button-help w-100 btn-lg fw-bold text-uppercase rounded-pill"/>
+                        </h:form> <!-- /form -->
+                    </div> <!-- /div .col-md-7 -->
+                </div> <!-- /div .row g-5 -->
+            </main> <!-- /main -->
+            
+            <footer class="mt-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">&copy; Copyright 2024 v0.2 | <a href="#">Bioecoms &bull; Maint</a>.</p>
+                <!--
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                    <li class="list-inline-item"><a href="#">Support</a></li>
+                </ul>  /ul .list-inline -->
+            </footer> <!-- /footer -->
+        </div> <!-- /div .container -->
+    </h:body> <!-- /body -->
+</html> <!-- /html -->

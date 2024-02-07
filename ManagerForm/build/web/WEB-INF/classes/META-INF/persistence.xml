@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="ManagerFormPU" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>jdbc/managerDS</jta-data-source>
+    
+    <class>com.maglo.ManagerForm.entities.ActionForm</class>
+    <class>com.maglo.ManagerForm.entities.Agents</class>
+    <class>com.maglo.ManagerForm.entities.Clients</class>
+    <class>com.maglo.ManagerForm.entities.Hardware</class>
+    <class>com.maglo.ManagerForm.entities.HistoryRecord</class>
+    <class>com.maglo.ManagerForm.entities.InstallFormTypeb</class>
+    <class>com.maglo.ManagerForm.entities.InstallFormTypec</class>
+    <class>com.maglo.ManagerForm.entities.PreInstallForm</class>
+    <class>com.maglo.ManagerForm.entities.ReceiptForm</class>
+    <class>com.maglo.ManagerForm.entities.RemovalForm</class>
+    <class>com.maglo.ManagerForm.entities.Roles</class>
+    <class>com.maglo.ManagerForm.entities.Users</class>
+    
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    
+    <properties>
+      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="eclipselink.logging.level" value="INFO"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="M@gloWamp666++"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gmaodb"/>
+      <property name="javax.persistence.jdbc.user" value="maglo"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>

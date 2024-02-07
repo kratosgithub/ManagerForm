@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FRS" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c762f88e-aedb-4c95-9d52-4b68820fc32b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from receipt_form r]]>
+	</queryString>
+	<field name="idReceiptForm" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jour" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harrivee" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="destination" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="expediteur" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pays" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accessoires" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jourReceipt" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hreceipt" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomReceipt" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomClt" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomHard" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="79" uuid="fb49b039-373c-4cc5-8969-be36cc4f109e"/>
+				<imageExpression><![CDATA["Header.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="62" width="555" height="38" forecolor="#FFFFFF" backcolor="#214091" uuid="058626b8-1759-49d6-aff6-5ba35cd8cf0d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="72" y="66" width="420" height="30" forecolor="#FFFFFF" uuid="30a96b79-ff80-4303-beeb-533fa7b05108"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[LISTE DES FICHES DE RECEPTIONS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="55" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="290" y="2" width="100" height="30" uuid="122d38fd-324a-45bd-a488-81fbc6e57bb3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Clients]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="2" width="100" height="30" uuid="bfb7fb64-0e7a-4c80-85c8-5ee6715653a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Equipements]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="2" width="100" height="30" uuid="2147d873-b11c-484b-bc75-b604a168a9fd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Date réception]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="35" width="535" height="1" uuid="a00b6bd3-997b-4151-8d13-075f591b3672"/>
+				<graphicElement>
+					<pen lineColor="#214091"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="150" y="2" width="100" height="30" uuid="1898e0cd-58b1-4550-ba10-ef27a50206f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Techniciens]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="5" width="100" height="30" uuid="e1d92770-37a8-4bba-81d4-568dde6ffc54"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jourReceipt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="5" width="100" height="30" uuid="50bafcec-94ae-4c1a-93d3-c7623e209b36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomReceipt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="5" width="100" height="30" uuid="d55b7803-1178-4d9d-8af6-7374a99ab206"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomClt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="5" width="100" height="30" uuid="5cc0c821-26bd-4560-8ac9-365373856035"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomHard}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="10" width="380" height="30" uuid="56cd4971-fba3-49f0-bacd-9722b3c7693e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Tel : +237 692 37 47 02 - Fax : +237 222 22 02 05 - Site Web : www.bioecoms.com B.P : 1021 Yaoundé Cameroun - Lieu : Entre d'Elise bar d'Essos et la station d'Essos.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="405" y="10" width="140" height="30" uuid="7768a828-5e7a-4869-8e72-c222da53f7ac"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="10" y="5" width="535" height="1" uuid="73bc4fe4-4bda-4d3e-b3df-f0fbc3643087"/>
+				<graphicElement>
+					<pen lineColor="#214091"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</pageFooter>
+</jasperReport>

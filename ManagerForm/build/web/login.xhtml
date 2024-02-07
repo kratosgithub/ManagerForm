@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2022 Maglo Solutions Corp.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <h:head> <!-- head -->
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-Type" name="description" content="text/html; charset=UTF-8"/>
+        <!-- [if lte IE 8]><script src="web/js/ie/html5shiv.js"></script><![endif] -->
+        
+        <!-- Lien logo -->
+        <link rel="icon" href="design/assets/img/favicons/favicon.ico"/>
+        <title>GMAO | Se Connecter</title>
+        
+        <!-- BootStrap Core CSS -->
+        <link rel="stylesheet" type="text/css" href="design/bootstrap/dist/css/bootstrap.min.css"/>
+        
+        <!-- Custom CSS for this page -->
+        <link rel="stylesheet" type="text/css" href="design/css/modals.css"/>
+        
+        <!-- CSS customer app -->
+        <link rel="stylesheet" type="text/css" href="design/css/gmao.min.css"/>
+    </h:head> <!-- /head -->
+    <h:body styleClass="text-center"> <!-- body -->
+        <div class="modal modal-signin position-static d-block py-5 shadow-sm p-3" tabindex="-1" role="dialog" id="modalSignin" style="background-color: #0e3894;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h2 class="fw-bold mb-0 text-success">
+                            <i class="pi pi-sign-in px-2 fs-3"></i>
+                            Se Connecter <hr class="my-3 w-50" style="height: .75rem; color: #82CAAF;"/>
+                        </h2> <!-- /h2 -->
+                    </div> <!-- /div .modal-header -->
+                    
+                    <div class="modal-body p-5 pt-0">
+                        <h:form styleClass=""> <!-- form -->
+                            <div class="form-floating mb-3">
+                                <p:inputText id="floatingInput" styleClass="form-control rounded-4 mb-2" value="#{loginController.login}" required="true" 
+                                             type="text" requiredMessage="Entrer votre nom d'utilisateur." placeholder="Nom d'utilisateur" label="Erreur"
+                                             validatorMessage="La longueur est inférieure à la valeur minimale autorisée, '8'">
+                                    <f:validateLength minimum="8"/>
+                                    <f:ajax event="blur" render="floatingInput"/>
+                                </p:inputText> <!-- /inputText email -->
+                                <p:outputLabel for="floatingInput">Nom d'utilisateur</p:outputLabel>
+                                <p:message for="floatingInput" styleClass="error w-100" severity="error"/>
+                            </div> <!-- /div .floatingInput -->
+                            
+                            <div class="form-floating mb-3">
+                                <p:inputText id="floatingPassword" styleClass="form-control rounded-4 mb-2" value="#{loginController.password}" required="true" 
+                                             type="password" requiredMessage="Entrer votre adresse mot de passe." placeholder="Mot de passe">
+                                    <f:validator validatorId="passwordValidator" id="floatingPassword"/>
+                                    <f:ajax event="blur" render="floatingPassword"/>
+                                </p:inputText> <!-- /inputText password -->
+                                <p:outputLabel for="floatingPassword">Mot de passe</p:outputLabel>
+                                <p:message for="floatingPassword" styleClass="error w-100" severity="error"/>
+                                <p:message for="floatingPassword" styleClass="warn" severity="warn" showSummary="true"/>
+                            </div> <!-- /div .floatingInput -->
+                            
+                            <!-- Button command -->
+                            <p:commandButton action="#{loginController.login}" value="Se Connecter" update="@form"
+                                styleClass="btn btn-sm ui-button-raised ui-button-success w-100 rounded-pill mb-2 fw-bold text-uppercase"/>
+                            
+                            <hr class="my-3"/>
+                            
+                            <a class="btn w-100 py-2 mb-2 btn-dark rounded-pill text-uppercase fw-bold shadow-sm p-3" href="forgot.xhtml">
+                                Mot de passe oublié ?
+                                <i class="bi me-1 pi pi-lock-open px-2" style="height: 16px; width: 16px;"></i>
+                            </a> <!-- /a -->
+                            <a class=" btn btn-primary w-100 py-2 mb-2 rounded-pill text-uppercase fw-bold shadow-sm p-3" href="register.xhtml">
+                                Créer un compte
+                                <i class="bi me-1 pi pi-user-plus px-2" style="height: 16px; width: 16px;"></i>
+                            </a> <!-- /a -->
+                            <a class="btn btn-secondary w-100 py-2 mb-2 rounded-pill text-uppercase fw-bold shadow-sm p-3" href="index.xhtml">
+                                Retourner à l'accueil
+                                <i class="bi me-1 pi pi-home px-2" style="height: 16px; width: 16px;"></i>
+                            </a> <!-- /a -->
+                            
+                            <small class="text-muted">Copyright &copy; 2024 v0.2 | <a class="text-primary fw-bold" href="#">Bioecoms &bull; Maint</a>.</small>
+                        </h:form> <!-- /form -->
+                    </div> <!-- /div .modal-body -->
+                </div> <!-- /div .modal-content -->
+            </div> <!-- /div .modal-dialog -->
+        </div> <!-- /div .modal -->
+        
+        <!-- Javascript source ============================================= -->
+        <script src="design/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </h:body> <!-- /body -->
+</html> <!-- /html -->

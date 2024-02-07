@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FCS" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4794df00-e80a-45d9-8249-662fbf24c185">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from clients c order by c.nomClient]]>
+	</queryString>
+	<field name="idClient" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomClient" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="service" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ville" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telClient" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="79" uuid="ed9e2b40-01f7-4f49-b476-a47b9340c45f"/>
+				<imageExpression><![CDATA["Header.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="62" width="555" height="38" forecolor="#FFFFFF" backcolor="#214091" uuid="a3ee3a6d-a0a3-4ceb-a893-4b29db175117"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="72" y="66" width="410" height="30" forecolor="#FFFFFF" uuid="33af0aa9-c137-4e6c-a2e2-ec790b98164f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[LISTE DES CLIENTS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="55" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="45" y="2" width="100" height="30" uuid="6175d028-ec96-459f-96a9-056698c7143f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Nom du client]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="2" width="100" height="30" uuid="e627f747-c6f4-41b8-84f9-63a9c01dfd57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Service]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="2" width="100" height="30" uuid="6c68e17e-5da3-4f0e-9de9-ad9659c1bfa8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Ville]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="2" width="100" height="30" uuid="1d24265e-2cc8-4553-911f-c440e554f199"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[N° Téléphone]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="35" width="535" height="1" uuid="1c0c56d1-d5ab-4db8-974a-44da42bbd59c"/>
+				<graphicElement>
+					<pen lineColor="#214091"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="5" width="170" height="20" uuid="c2da9314-5ef3-4214-87c4-9dbd48b371cd"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomClient}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="5" width="100" height="20" uuid="9f877459-e26a-4374-b2c3-4e64f27db861"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{service}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="328" y="5" width="100" height="20" uuid="c33a9775-8584-43b9-abe6-be6faff8b729"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ville}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="5" width="100" height="20" uuid="0e4c9732-ca73-4dc3-b70d-c755d733d428"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telClient}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="405" y="10" width="140" height="30" uuid="7c1d514c-b8b5-4900-a055-683fbb4e8e51"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="10" width="380" height="30" uuid="2905a65c-732e-4a71-9c70-0c99b176f3fa"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Tel : +237 692 37 47 02 - Fax : +237 222 22 02 05 - Site Web : www.bioecoms.com B.P : 1021 Yaoundé Cameroun - Lieu : Entre d'Elise bar d'Essos et la station d'Essos.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="5" width="535" height="1" uuid="90ee1b34-5787-4b00-834d-3bb7115f7399"/>
+				<graphicElement>
+					<pen lineColor="#214091"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</pageFooter>
+</jasperReport>

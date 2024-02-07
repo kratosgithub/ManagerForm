@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FRM" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="134111ca-1ad6-4ef0-bea9-617e5d88e7f0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from removal_form r]]>
+	</queryString>
+	<field name="idRmForm" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jour" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hrm" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomClnt" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomHware" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomAgent" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accessoires" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="79" uuid="c2370060-2585-4220-9241-b94711a0aba6"/>
+				<imageExpression><![CDATA["Header.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="62" width="555" height="38" forecolor="#FFFFFF" backcolor="#214091" uuid="d49199ec-d714-4cde-a622-e9dfe4a4919e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="72" y="66" width="420" height="30" forecolor="#FFFFFF" uuid="838a0fb1-d2b3-42f3-89a5-d0b0ce768539"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[LISTE DES FICHES DE RETRAITS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="55" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="2" width="100" height="30" uuid="ad2690c6-ab3d-4ede-a8b0-563963774eb1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Date retrait]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="2" width="100" height="30" uuid="71c96e88-9e71-49cf-9a50-a75ea5a9ca68"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Clients]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="2" width="100" height="30" uuid="d607b85a-b039-49c4-9331-bbf9c53b9337"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Equipements]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="2" width="100" height="30" uuid="69a07907-039a-477d-b12f-e967fe9a2977"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Techniciens]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="35" width="535" height="1" uuid="cf931bdf-356a-4489-baa0-11730add62db"/>
+				<graphicElement>
+					<pen lineColor="#214091"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="5" width="100" height="30" uuid="af9c0916-85c6-4fdf-8f15-a5178ac34064"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jour}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="5" width="100" height="30" uuid="5ad5c1bf-05b8-4efe-914b-959e4eb1acb9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomClnt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="5" width="100" height="30" uuid="cf716124-87ee-436c-9e08-e7e8065cde01"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomHware}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="5" width="100" height="30" uuid="a0a868c3-3eb2-438f-a191-8562d426f506"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomAgent}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="10" width="380" height="30" uuid="f4dd5301-f27a-440d-8270-6b0ecea038fc"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Tel : +237 692 37 47 02 - Fax : +237 222 22 02 05 - Site Web : www.bioecoms.com B.P : 1021 Yaoundé Cameroun - Lieu : Entre d'Elise bar d'Essos et la station d'Essos.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="405" y="10" width="140" height="30" uuid="1f7c3bd3-ff24-4dd7-9946-51414137a6e7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="10" y="5" width="535" height="1" uuid="877d3323-13cf-4744-9fc5-d128620738a5"/>
+				<graphicElement>
+					<pen lineColor="#214091"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</pageFooter>
+</jasperReport>

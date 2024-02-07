@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Chanas Assurances S.A.
+Professional Computer.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head> <!-- head -->
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-Type" name="description" content="text/html; charset=UTF-8"/>
+        <!-- [if lte IE 8]><script src="web/js/ie/html5shiv.js"></script><![endif] -->
+        
+        <!-- Lien logo -->
+        <link rel="icon" href="../design/assets/img/favicons/favicon.ico"/>
+        <title>GMAO | Détails Réception</title>
+        
+        <!-- liens CSS -->
+        <link rel="stylesheet" type="text/css" href="../design/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="../design/css/dashboard.css"/>
+        <!-- <link rel="stylesheet" type="text/css" href="../design/css/sidebars.css"/> -->
+        <link rel="stylesheet" type="text/css" href="../design/css/form-validation.css"/>
+        
+        <!-- liens icons customs -->
+        <link rel="stylesheet" type="text/css" href="../design/primeicons-master/primeicons.css"/>
+        
+        <!-- Fonts personnalise -->
+        <link rel="stylesheet" type="text/css" href="../design/css/gmao.min.css"/>
+    </h:head> <!-- /head -->
+    <h:body> <!-- body -->
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="login" value="#{loginController.login}"/>
+                <f:viewAction action="#{loginController.loadUser()}"/>
+                
+                <f:viewParam name="nomReceipt" value="#{detailReceiptController.nomReceipt}"/>
+                <f:viewAction action="#{detailReceiptController.loadReceipt()}"/>
+            </f:metadata> <!-- /f:metadata -->
+        </ui:define> <!-- /ui:define -->
+        
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Bioecoms &bull; Maint</a>
+            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> <!-- /button -->
+            
+            <div class="w-100"></div> <!-- /div -->
+            
+            <!-- <div class="navbar-nav"></div> /div -->
+            <div class="dropdown col-md-auto col-lg-2 nav-item text-nowrap">
+                <a class="nav-link px-3 text-white fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Bonjour, #{loginController.authenticatedUser.prenom} #{loginController.authenticatedUser.nom}
+                </a> <!-- /a -->
+                <ul class="dropdown-menu bg-light rounded-2">
+                    <li> <!-- li -->
+                        <a class="dropdown-item" href="profil.xhtml">
+                            <i class="pi pi-user px-2"></i>
+                            Mon Profil
+                        </a> <!-- /a -->
+                    </li> <!-- /li profil -->
+                    <!--<li>  li
+                        <a class="dropdown-item" href="#">
+                            <i class="pi pi-lock px-2"></i>
+                            Changer de mot de passe
+                        </a> /a
+                    </li> /li password -->
+                    <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                </ul> <!-- /ul -->
+            </div> <!-- /div .dropdown -->
+        </header> <!-- /header -->
+        
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="position-sticky pt-3">
+                        <!-- comments 
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">
+                                    <i class="pi pi-home px-2" style="font-size: 16px;"></i>
+                                    Accueil
+                                </a> 
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="pi pi-list px-2" style="color: lightsteelblue; font-size: 16px;"></i>
+                                    Clients
+                                </a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="pi pi-list px-2" style="color: lightsteelblue; font-size: 16px;"></i>
+                                    Equipements
+                                </a> 
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="pi pi-list px-2" style="color: lightsteelblue; font-size: 16px;"></i>
+                                    Techniciens
+                                </a> 
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="pi pi-search px-2" style="color: lightsteelblue; font-size: 16px;"></i>
+                                    Rechercher <span class="text-muted" style="font-size: 10px;">(fiche)</span>
+                                </a>  
+                            </li>
+                        </ul>  /ul nav flex-column -->
+                        <div class="flex-shrink-0 p-3">
+                            <a href="dashboard.xhtml" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                                <span class="fs-5 fw-semibold">Tableau de bord</span>
+                            </a> <!-- /a -->
+                            <ul class="list-unstyled ps-0">
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#homeboard-collapse" aria-expanded="false">
+                                        <i class="pi pi-plus-circle px-2"></i>
+                                        Accueil
+                                    </button> <!-- /button -->
+                                    <div class="collapse show" id="homeboard-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li class="nav-item bg-dark shadow p-2 rounded-2">
+                                                <a href="home.xhtml" class="link-light d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-home px-2"></i>
+                                                    Retourner à l'accueil
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <!--<li>  li 
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-unlock px-2"></i>
+                                                    Changer de mot de passe
+                                                </a> /a
+                                            </li> /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div -->
+                                </li> <!-- /li home -->
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                                        <i class="pi pi-plus-circle px-2"></i>
+                                        Clients
+                                    </button> <!-- /button -->
+                                    <div class="collapse show" id="home-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a href="newClients.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-plus px-2"></i>
+                                                    Nouveau client
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="listClients.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-users px-2"></i>
+                                                    Liste des clients
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="searchClient.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-edit px-2"></i>
+                                                    Modifier un client
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div .collapse -->
+                                </li> <!-- /li .mb-1 client -->
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                                        <i class="pi pi-plus-circle px-2"></i>
+                                        &Eacute;quipements
+                                    </button> <!-- /button -->
+                                    <div class="collapse" id="dashboard-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a href="newHardware.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-server px-2"></i>
+                                                    Nouvel équipement
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="listReceipts.xhtml" class="link-dark d-inline-flex text-decoration-none rounded disabled">
+                                                    <i class="pi pi-list px-2"></i>
+                                                    Liste des équipements
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="searchHardware.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-pencil px-2"></i>
+                                                    Modifier un équipement
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div -->
+                                </li> <!-- /li equipements -->
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                                        <i class="pi pi-plus-circle px-2"></i>
+                                        Techniciens
+                                    </button> <!-- /button -->
+                                    <div class="collapse show" id="orders-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a href="newAgents.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-plus px-2"></i>
+                                                    Nouveau technicien
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="listAgents.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-users px-2"></i>
+                                                    Liste des techniciens
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="searchAgent.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-user-edit px-2"></i>
+                                                    Modifier un technicien
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div .collapse -->
+                                </li> <!-- /li .mb-1 techniciens -->
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#file-collapse" aria-expanded="true">
+                                        <i class="pi pi-plus-circle px-2"></i>
+                                        Fiche réception
+                                    </button> <!-- /button -->
+                                    <div class="collapse show" id="file-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li class="nav-item bg-dark shadow p-2 rounded-2">
+                                                <a href="newReceipt.xhtml" class="link-light d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-file px-2"></i>
+                                                    Nouvelle fiche
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <li>
+                                                <a href="listReceipts.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-list px-2"></i>
+                                                    Liste des fiches
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div .collapse -->
+                                </li> <!-- /li .mb-1 fiches -->
+                                
+                                <li class="border-top my-3"></li>
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                                        <i class="pi pi-plus-circle px-2"></i>
+                                        Compte
+                                    </button> <!-- /button -->
+                                    <div class="collapse" id="account-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a href="profil.xhtml" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-info-circle px-2"></i>
+                                                    Mon profil
+                                                </a> <!-- /a -->
+                                            </li> <!-- /li -->
+                                            <!--<li>  li 
+                                                <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                                    <i class="pi pi-unlock px-2"></i>
+                                                    Changer de mot de passe
+                                                </a> /a
+                                            </li> /li -->
+                                        </ul> <!-- /ul -->
+                                    </div> <!-- /div -->
+                                </li> <!-- /li account -->
+                            </ul> <!-- /ul .list-unstyled -->
+                        </div> <!-- /div .flex-shrink-0 -->
+                    </div> <!-- /position-sticky pt-3 -->
+                </nav> <!-- /nav -->
+                
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2 fw-bold text-dark fs-5"><i class="pi pi-cloud-download px-2"></i>Formulaire de réception</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group me-2">
+                                <h:form> <!-- form -->
+                                    <p:commandButton action="#{loginController.logout}" value="Se déconnecter" styleClass="btn btn-sm ui-button-raised ui-button-flat ui-button-info rounded-pill text-uppercase fw-bold" update="@form"/>
+                                </h:form> <!-- /form -->
+                            </div> <!-- /div -->
+                        </div> <!-- /div .btn-toolbar -->
+                    </div> <!-- /div .d-flex -->
+                    
+                    <div class="row g-5">
+                        <div class="col-md-5 col-lg-4 order-md-last">
+                            <h4 class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-black"><i class="pi pi-info-circle px-2"></i>Informations</span>
+                            </h4> <!-- /h4 -->
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div class="text-purple">
+                                        <h6 class="my-0">Rechercher une fiche</h6>
+                                        <small class="text-muted"><a href="#">Trouver</a></small>
+                                    </div> <!-- /div .text-primary -->
+                                </li> <!-- /li -->
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div class="text-success">
+                                        <h6 class="my-0">Fiches de réception</h6>
+                                        <small class="text-muted"><a href="listReceipts.xhtml">Consulter</a></small>
+                                    </div> <!-- /div .text-primary -->
+                                </li> <!-- /li -->
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div class="text-danger">
+                                        <h6 class="my-0">Bon à savoir</h6>
+                                        <small class="text-muted">Tous les champs sont obligatoires (<span class="text-danger">*</span>)</small>
+                                    </div> <!-- /div -->
+                                </li> <!-- /li .list-group -->
+                            </ul> <!-- /ul .list-group -->
+                        </div> <!-- /div .col-md-5 -->
+                        
+                        <div class="col-md-7 col-lg-8">
+                            <h5 class="mb-3">Nouvelle &bull; <small class="text-muted">Ajouter une fiche</small></h5>
+                            
+                            <h:form styleClass="card shadow p-3 bg-body rounded-3 container-fluid border-light"> <!-- form -->
+                                <p:tooltip/>
+                                <p:messages id="messages" globalOnly="true" showDetail="true" severity="info" showSummary="true" styleClass="info w-100" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages> <!-- /messages -->
+                                
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputJour" styleClass="form-label text-black-50">Date d'arrivée <span class="text-danger">*</span></h:outputLabel><br/>
+                                        <p:datePicker id="inputJour" value="#{detailReceiptController.receiptForm.jour}" required="true" requiredMessage="Entrer la date du jour." pattern="dd/MM/yyyy" showButtonBar="true"
+                                                      placeholder="dd/mm/yyyy" disabled="true" styleClass="rounded-4">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            <!-- <f:ajax event="blur" render="inputJour"/> -->
+                                        </p:datePicker>
+                                        <p:message for="inputJour" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div .col-md-4 -->
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputHarrivee" styleClass="form-label text-black-50">Heure d'arrivée <span class="text-danger">*</span></h:outputLabel><br/>
+                                        <p:datePicker id="inputHarrivee" required="true" value="#{detailReceiptController.receiptForm.harrivee}" timeOnly="true"
+                                                      requiredMessage="Entrer l'heure d'arrivée." placeholder="00:00" pattern="HH:mm" disabled="true" styleClass="rounded-4">
+                                            <!-- <f:ajax event="blur" render="inputHarrivee"/> -->
+                                        </p:datePicker> <!-- /inputText -->
+                                        <p:message for="inputHarrivee" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div .col-md-4 -->
+                                    <!--
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputMarrivee" styleClass="form-label mb-2 text-black-50">Minute d'arrivée <span class="text-danger">*</span></h:outputLabel>
+                                        <p:inputText id="inputMarrivee" styleClass="form-control" required="true"
+                                                 requiredMessage="Entrer la minute d'arrivée." placeholder="Entrer la minute d'arrivée" 
+                                                 converterMessage="La minute doit contenir uniquement des chiffres." label="Erreur : ">
+                                            <f:convertNumber type="number"/>
+                                            <f:ajax event="blur" render="inputMarrivee"/>
+                                        </p:inputText> <! /inputText 
+                                        <p:message for="inputMarrivee" styleClass="error w-100" severity="error"/>
+                                    </div>  /div .col-md-4 -->
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputDestination" styleClass="form-label text-black-50">Destination <span class="text-danger">*</span></h:outputLabel>
+                                        <p:selectOneMenu id="inputDestination" value="#{detailReceiptController.receiptForm.destination}" label="Destination" required="true"
+                                                requiredMessage="Sélectionner une destination." styleClass="form-control rounded-4">
+                                            <f:selectItem itemValue="" itemLabel="-- Choisir --" noSelectionOption="true"/>
+                                            <f:selectItem itemValue="Stock" itemLabel="Stock"/>
+                                            <f:selectItem itemValue="Client" itemLabel="Client"/>
+                                            <!-- <f:ajax event="blur" render="inputDestination"/> -->
+                                        </p:selectOneMenu> 
+                                        <p:message for="inputDestination" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div .col-md-4 -->
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputExpediteur" styleClass="form-label text-black-50">Expéditeur <span class="text-danger">*</span></h:outputLabel>
+                                        <p:inputText id="inputExpediteur" styleClass="form-control rounded-4" required="true" value="#{detailReceiptController.receiptForm.expediteur}" type="text"
+                                                     requiredMessage="Entrer l'expéditeur." placeholder="Entrer l'expéditeur">
+                                            <f:ajax event="blur" render="inputExpediteur"/>
+                                        </p:inputText> <!-- /inputText -->
+                                        <p:message for="inputExpediteur" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div -->
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputPays" styleClass="form-label text-black-50">Pays de provenance <span class="text-danger">*</span></h:outputLabel>
+                                        <p:inputText id="inputPays" styleClass="form-control rounded-4" required="true" value="#{detailReceiptController.receiptForm.pays}" type="text"
+                                                     requiredMessage="Entrer le pays de provenance." placeholder="Pays de provenance">
+                                            <f:ajax event="blur" render="inputPays"/>
+                                        </p:inputText> <!-- /inputText -->
+                                        <p:message for="inputPays" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div -->
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputAccessoires" styleClass="form-label text-black-50">Accessoires <span class="text-danger">*</span></h:outputLabel>
+                                        <p:selectOneMenu id="inputAccessoires" value="#{detailReceiptController.receiptForm.accessoires}" label="Accessoires" required="true"
+                                                requiredMessage="Sélectionner une option." styleClass="form-control rounded-4">
+                                            <f:selectItem itemValue="" itemLabel="-- Choisir --" noSelectionOption="true"/>
+                                            <f:selectItem itemValue="Oui" itemLabel="Oui"/>
+                                            <f:selectItem itemValue="Non" itemLabel="Non"/>
+                                            <!-- <f:ajax event="blur" render="inputAccessoires"/> -->
+                                        </p:selectOneMenu>
+                                        <p:message for="inputAccessoires" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div .col-md-4 -->
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputJourReceipt" styleClass="form-label text-black-50">Date de réception <span class="text-danger">*</span></h:outputLabel><br/>
+                                        <p:datePicker id="inputJourReceipt" value="#{detailReceiptController.receiptForm.jourReceipt}" required="true" requiredMessage="Entrer la date de réception." pattern="dd/MM/yyyy"
+                                                      placeholder="dd/mm/yyyy" showButtonBar="true" disabled="true" styleClass="rounded-4">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            <!-- <f:ajax event="blur" render="inputJourReceipt"/> -->
+                                        </p:datePicker> <!-- /datePicker -->
+                                        <p:message for="inputJourReceipt" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div .col-md-4 -->
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputHreceipt" styleClass="form-label text-black-50">Heure de réception <span class="text-danger">*</span></h:outputLabel><br/>
+                                        <p:datePicker id="inputHreceipt" required="true" value="#{detailReceiptController.receiptForm.hreceipt}" disabled="true"
+                                                      requiredMessage="Entrer l'heure de réception." placeholder="00:00" timeOnly="true"
+                                                      converterMessage="L'heure doit contenir uniquement des chiffres." label="Erreur : " pattern="HH:mm" styleClass="rounded-4">
+                                            <!-- <f:ajax event="blur" render="inputHreceipt"/> -->
+                                        </p:datePicker> <!-- /inputText -->
+                                        <p:message for="inputHreceipt" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div .col-md-4 -->
+                                    <!--
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputMreceipt" styleClass="form-label mb-2 text-black-50">Minute de réception <span class="text-danger">*</span></h:outputLabel>
+                                        <p:inputText id="inputMreceipt" styleClass="form-control" required="true"
+                                                 requiredMessage="Entrer la minute de réception." placeholder="Entrer la minute de réception" 
+                                                 converterMessage="La minute doit contenir uniquement des chiffres." label="Erreur : ">
+                                            <f:convertNumber type="number"/>
+                                            <f:ajax event="blur" render="inputMreceipt"/>
+                                        </p:inputText> /inputText 
+                                        <p:message for="inputMreceipt" styleClass="error w-100" severity="error"/>
+                                    </div>  /div .col-md-4 -->
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="inputNomReceipt" styleClass="form-label text-black-50">Nom technicien <span class="text-danger">*</span></h:outputLabel>
+                                        <p:inputText id="inputNomReceipt" styleClass="form-control rounded-4" required="true" value="#{detailReceiptController.receiptForm.nomReceipt}"
+                                                     requiredMessage="Entrer un nom." placeholder="Entrer un nom" disabled="true">
+                                            <f:ajax event="blur" render="inputNomReceipt"/>
+                                        </p:inputText> <!-- /inputText .inputNom -->
+                                        <p:message for="inputNomReceipt" styleClass="error w-100" severity="error"/>
+                                        <!-- <p:message for="inputNom" styleClass="info" severity="info" showSummary="true"/> -->
+                                    </div> <!-- /div .col-md-4 -->
+                                    <!--
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="listeHardware" styleClass="form-label text-black-50">&Eacute;quipement <span class="text-danger">*</span></h:outputLabel>
+                                        <c:if test="${!empty sessionScope.hardware}">
+                                            <select class="form-control" name="listeHardware" id="listeHardware" required="true">
+                                                <option value="">Sélectionner...</option>
+                                                <c:forEach items="${sessionScope.hardware}" var="mapHardware">
+                                                    <option value="${mapHardware.key}">${mapHardware.value.nomHardware}</option>
+                                                </c:forEach> /forEach 
+                                            </select> /select
+                                        </c:if> /if
+                                    </div> /col-md-4 -->
+                                    <div class="col-md-4 me-2">
+                                        <h:outputLabel for="listeClients" styleClass="form-label text-black-50">Clients <span class="text-danger">*</span></h:outputLabel>
+                                        <p:inputText id="inputNomCst" value="#{detailReceiptController.receiptForm.nomClt}" label="liste" required="true"
+                                                     requiredMessage="Selectionner un client." styleClass="form-control rounded-4" disabled="true">
+                                            <!-- <f:selectItem itemLabel=" Choisir " noSelectionOption="true"/> -->
+                                            <!-- <f:selectItems value="#{addReceiptFormController.clients}" var="clt" itemLabel="#{clt.nomClient}" itemValue="#{clt.nomClient}"/> -->
+                                            <!-- <f:ajax event="blur" render="inputIdCst"/> -->
+                                        </p:inputText>
+                                        <p:message for="inputNomCst" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div .col-md-4 -->
+                                    <div class="col-md-4">
+                                        <h:outputLabel for="listeHardware" styleClass="form-label text-black-50">&Eacute;quipements <span class="text-danger">*</span></h:outputLabel>
+                                        <p:inputText id="inputNomHard" value="#{detailReceiptController.receiptForm.nomHard}" label="liste" required="true"
+                                                         requiredMessage="Selectionner un équipement." styleClass="form-control rounded-4" disabled="true">
+                                            <!-- <f:selectItem itemLabel=" Choisir " noSelectionOption="true"/> -->
+                                            <!-- <f:selectItems value="#{addReceiptFormController.hardware}" var="hrd" itemLabel="#{hrd.nomHardware}" itemValue="#{hrd.nomHardware}"/> -->
+                                            <!-- <f:ajax event="blur" render="inputIdHard"/> -->
+                                        </p:inputText>
+                                        <p:message for="inputNomHard" styleClass="error w-100" severity="error"/>
+                                    </div> <!-- /div .col-md-4 -->
+                                </div> <!-- /div .row -->
+                                
+                                <hr class="my-3"/>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <p:commandButton action="#{detailReceiptController.updateReceipt(detailReceiptController.receiptForm)}" value="Mettre à jour" update="@form"
+                                                styleClass="w-100 btn btn-lg ui-button-raised ui-button-help fw-bold text-uppercase rounded-pill"/>
+                                    </div> <!-- /div .col-md-6 mb-2 -->
+                                    <div class="col-md-6">
+                                        <p:commandButton actionListener="#{detailReceiptController.downloadFile}" value="Télécharger"
+                                                         styleClass="w-100 btn ui-button-raised btn-lg ui-button-warning fw-bold text-uppercase rounded-pill" ajax="false"/>
+                                    </div> <!-- /div .col-md-6 -->
+                                </div> <!-- /div .row -->
+                            </h:form> <!-- /form -->
+                        </div> <!-- /div .col-md-7 -->
+                    </div> <!-- /div .row g-5 -->
+                    
+                    <hr class="my-3"/>
+                    
+                    <footer class="mt-auto pt-0 text-muted text-center text-small">
+                        <p class="mb-1">&copy; Copyright 2024 v0.2 | <a href="#">Bioecoms &bull; Maint</a>.</p>
+                        <!--
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="#">Privacy</a></li>
+                            <li class="list-inline-item"><a href="#">Terms</a></li>
+                            <li class="list-inline-item"><a href="#">Support</a></li>
+                        </ul>  /ul .list-inline -->
+                    </footer> <!-- /footer -->
+                </main> <!-- /main -->
+            </div> <!-- /div .row -->
+        </div> <!-- /div .container-fluid -->
+        
+        <!-- Javascript Here =============================================== -->
+        <script src="../design/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="../design/js/sidebars.js" type="text/javascript"></script>
+    </h:body> <!-- /body -->
+</html> <!-- /html -->
